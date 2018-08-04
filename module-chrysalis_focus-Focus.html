@@ -155,7 +155,368 @@ way to extend it from the outside, without requiring one to subclass.</p></div>
     
 
     
-    <h4 class="name" id="find"><span class="type-signature"></span>find<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
+    <h4 class="name" id="addCommands"><span class="type-signature"></span>addCommands<span class="signature">(cmds)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Register new commands with the system.</p>
+<p>Commands can either be functions, or objects with a <code>.focus</code> method. Both
+<code>.focus</code> and the command-function take the same arguments: <code>self</code> (the
+<code>Focus</code> instance running the handler; to have access to the <code>request</code>
+method) and any number of arguments, which are supposed to be the
+arguments of the command the handler is executing.</p>
+<p>Handlers <strong>must</strong> return promises, the result of their commands,
+post-processed in whatever way is most practical for the command in
+question.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The command functions / objects to register, as
+name-value pairs.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="chrysalis-focus.js.html">chrysalis-focus.js</a>, <a href="chrysalis-focus.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="command"><span class="type-signature"></span>command<span class="signature">(cmd, &hellip;args)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Send a high-level command, and return a processed response.</p>
+<p>Commands registered with <code>addCommands</code> can be called by using this
+method. If the command to be sent is recognised, it will send the command
+through the registered handler. If it isn't known, falls back to
+<code>request()</code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmd</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the command to send.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>optional arguments for the command.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="chrysalis-focus.js.html">chrysalis-focus.js</a>, <a href="chrysalis-focus.js.html#line169">line 169</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+    <div class="param-desc">
+    
+        <p>Will throw an error if the instance isn't connected to the
+keyboard yet.</p>
+    
+    </div>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The processed response.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="find"><span class="type-signature"></span>find<span class="signature">(&hellip;devices)</span><span class="type-signature"> &rarr; {Promise.&lt;Array>}</span></h4>
     
 
     
@@ -203,6 +564,8 @@ matches.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -215,7 +578,7 @@ matches.</p>
 
         <tr>
             
-                <td class="name"><code>devices...</code></td>
+                <td class="name"><code>devices</code></td>
             
 
             <td class="type">
@@ -227,6 +590,16 @@ matches.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
             
 
             
@@ -463,6 +836,222 @@ object, or a device descriptor.</p></td>
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="request"><span class="type-signature"></span>request<span class="signature">(cmd, &hellip;args)</span><span class="type-signature"> &rarr; {Promise.&lt;String>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Send a low-level request, and return the (mostly) unprocessed response.</p>
+<p>This method is close to the wire, as all it does, is format its
+arguments, send the command, and return the results. The only processing
+done on the results is making sure we don't read too much.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cmd</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the command to send.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>optional arguments for the command.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="chrysalis-focus.js.html">chrysalis-focus.js</a>, <a href="chrysalis-focus.js.html#line134">line 134</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+    <div class="param-desc">
+    
+        <p>Will throw an error if the instance isn't connected to the
+keyboard yet.</p>
+    
+    </div>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The unprocessed response.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;String></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
@@ -484,7 +1073,7 @@ object, or a device descriptor.</p></td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Aug 04 2018 17:35:52 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Aug 04 2018 20:39:31 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
